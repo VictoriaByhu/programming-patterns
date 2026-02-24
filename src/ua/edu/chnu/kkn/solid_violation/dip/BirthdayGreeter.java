@@ -5,10 +5,12 @@ import java.time.MonthDay;
 public class BirthdayGreeter {
     private final EmployeeRepository employeeRepository;
     private final Clock clock;
+    private final MessageSender messageSender;
 
-    public BirthdayGreeter(EmployeeRepository employeeRepository, Clock clock) {
+    public BirthdayGreeter(EmployeeRepository employeeRepository, Clock clock, MessageSender messageSender) {
         this.employeeRepository = employeeRepository;
         this.clock = clock;
+        this.messageSender = messageSender;
     }
 
     public void sendGreetings() {
@@ -16,7 +18,7 @@ public class BirthdayGreeter {
         employeeRepository.findEmployeesBornOn(today)
                 .stream()
                 .map(this::emailFor)
-                .forEach(email -> new EmailSender().send(email));
+                .forEach(MessageSender::send);
     }
 
     private Email emailFor(Employee employee) {
