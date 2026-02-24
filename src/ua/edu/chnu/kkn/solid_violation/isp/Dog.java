@@ -6,6 +6,7 @@ public class Dog implements Barking, Running {
         System.out.println("Dog's barking.");
     }
 
-
+    @Override
+    public void run() { System.out.println("Dog's running."); }
 }
 

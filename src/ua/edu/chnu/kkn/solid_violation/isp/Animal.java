@@ -1,4 +1,4 @@
-package ua.edu.chnu.kkn.solid_violation.isp;
+
 
 
 /*
@@ -8,12 +8,8 @@ package ua.edu.chnu.kkn.solid_violation.isp;
     void bark();
 }*/
 
-interface Flying {
-    void fly();
-}
 
-interface Running {
-    void run();
-}
+
+
 
 
