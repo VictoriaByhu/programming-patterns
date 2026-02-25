@@ -5,7 +5,7 @@ package ua.edu.chnu.kkn.solid_violation.srp;
 public class AccountService {
     private TransactionRepository transactionRepository;
     private Clock clock;
-    private StatementPrinter statementPrinter; // Новий помічник
+    private StatementPrinter statementPrinter;
 
     public AccountService(TransactionRepository repository, Clock clock, StatementPrinter printer) {
         this.transactionRepository = repository;
@@ -22,7 +22,6 @@ public class AccountService {
     }
 
     public void printStatement() {
-        // Просто передаємо дані тому, хто вміє їх друкувати
         statementPrinter.print(transactionRepository.all());
     }
 }

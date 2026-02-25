@@ -1,5 +1,6 @@
 package ua.edu.chnu.kkn.solid_violation;
 
+import ua.edu.chnu.kkn.solid_violation.dip.*;
 import ua.edu.chnu.kkn.solid_violation.isp.Bird;
 import ua.edu.chnu.kkn.solid_violation.isp.Dog;
 import ua.edu.chnu.kkn.solid_violation.lsp.ElectricCar;
@@ -9,6 +10,7 @@ import ua.edu.chnu.kkn.solid_violation.ocp.Employee;
 import ua.edu.chnu.kkn.solid_violation.ocp.Engineer;
 import ua.edu.chnu.kkn.solid_violation.ocp.Manager;
 import ua.edu.chnu.kkn.solid_violation.srp.*;
+import ua.edu.chnu.kkn.solid_violation.srp.Clock;
 
 import java.util.List;
 
@@ -30,8 +32,8 @@ public class Main {
 
         System.out.println("-OCP Check-");
         List<Employee> employees = List.of(
-                new Engineer(3000, 500), // Отримує тільки salary
-                new Manager(4000, 1000)   // Отримує salary + bonus
+                new Engineer(3000, 500),
+                new Manager(4000, 1000)
         );
 
         for (Employee emp : employees) {
@@ -63,6 +65,14 @@ public class Main {
         Dog shepherd = new Dog();
         shepherd.bark();
         shepherd.run();
+
+        System.out.println("-DIP Check-");
+        ua.edu.chnu.kkn.solid_violation.dip.Clock dipClock = new ua.edu.chnu.kkn.solid_violation.dip.Clock();
+        EmployeeRepository empRepo = new InMemoryEmployeeRepository();
+        MessageSender emailSender = new EmailSender();
+
+        BirthdayGreeter greeter = new BirthdayGreeter(empRepo, dipClock, emailSender);
+        greeter.sendGreetings();
     }
 
 }
