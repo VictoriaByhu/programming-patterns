@@ -18,7 +18,7 @@ public class BirthdayGreeter {
         employeeRepository.findEmployeesBornOn(today)
                 .stream()
                 .map(this::emailFor)
-                .forEach(MessageSender::send);
+                .forEach(messageSender::send);
     }
 
     private Email emailFor(Employee employee) {
